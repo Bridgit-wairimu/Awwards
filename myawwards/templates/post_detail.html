@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block content %}
+
+{{block.super}}
+
+       <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{object.title|title}}</a>
+              <p>{{ object.description }}</p>
+              <img src="{{image.image.url}}" class="img-responsive" alt="Image" class="card-img" width="200px" height="150px">
+
+            <hr>
+            <p class="card-text ">
+                <img src="{{object.user.profile.image.url }}" class="nav-img mr-2" alt="">
+                By {{object.user.username|title}} <span style="float:right">{{object.date|date}}</span>
+            </p>
+          </div>
+        </article>
+  
+  
+{%endblock%}

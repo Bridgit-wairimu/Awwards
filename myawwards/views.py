@@ -2,12 +2,14 @@ from django.shortcuts import render,redirect
 from django.http  import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import csrf_exempt
-from .forms import CreateUserForm,UserUpdateForm, ProfileUpdateForm
+from .forms import CreateUserForm,UserUpdateForm, ProfileUpdateForm,PostForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView,CreateView
 from .models import Post
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 
@@ -19,8 +21,26 @@ def index(request):
     return render(request, 'index.html' , context)
 
 
+# <app>/<model>_<viewtype>.html
 class PostListView(ListView):
+    model = Post    
+    template_name = 'index.html'   
+    context_object_name = 'posts'
+    ordering = ['-date']
+
+
+class PostDetailView(DetailView):
     model = Post
+    
+class PostCreateView(LoginRequiredMixin,CreateView):
+    model = Post
+    fields = ['title','description', 'projects','url']
+    template_name = 'post_form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 @csrf_exempt
 def registerPage(request):

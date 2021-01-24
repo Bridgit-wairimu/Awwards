@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile,Post
 
 
 
@@ -24,3 +24,11 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+
+
+class PostForm(forms.ModelForm):
+    image = forms.ImageField(required=True)
+
+    class Meta:
+        model = Post
+        fields = ('image', 'title', 'description', 'projects',)  

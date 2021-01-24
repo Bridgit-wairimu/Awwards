@@ -5,6 +5,8 @@ import datetime as dt
 from django.dispatch import receiver
 from PIL import Image
 
+from django.urls import reverse
+
  #Create your models here.
 class Rating(models.Model):
     rating = (
@@ -43,13 +45,13 @@ class Rating(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=155)
-    url = models.URLField(max_length=255)
     description = models.TextField(max_length=255)
     projects = models.CharField(max_length=200, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     date = models.DateTimeField(auto_now_add=True, blank=True)
-    image = models.ImageField( blank=True, null=True, default='default.jpg')
-
+    image = models.ImageField(upload_to='media/', blank=True, null=True, default='default.jpg')
+    url = models.URLField(max_length=255, blank=True, null= True)
+    
     def __str__(self):
         return f'{self.title}'
 
@@ -66,6 +68,12 @@ class Post(models.Model):
 
     def save_post(self):
         self.save()
+
+        
+    def get_absolute_url(self):
+        return reverse('post-create')
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

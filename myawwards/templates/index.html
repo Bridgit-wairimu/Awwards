@@ -1,5 +1,6 @@
 {%extends 'base.html'%}
-
+{% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 {{block.super}}
@@ -11,5 +12,22 @@
      <img src="../static/css/images/photo-one.jpg" >
     </div>
   
+            
+    
+    {% for post in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{post.title|title}}</a>
+              <p>{{ post.description }}</p>
+             <img src="{{post.image.url}}" class="img-responsive" alt="Image" class="card-img" width="200px" height="150px">
+
+            <hr>
+            <p class="card-text "><img src="{{post.user.profile.profile_picture.url}}" class="nav-img mr-2" alt="">
+                By {{post.user.username|title}} <span style="float:right">{{post.date|date}}</span>
+            </p>
+          </div>
+        </article>
+    {% endfor %}
   
 {%endblock%}
