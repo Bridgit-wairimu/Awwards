@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 import datetime as dt
 from django.dispatch import receiver
+from PIL import Image
 
  #Create your models here.
 class Rating(models.Model):
@@ -44,7 +45,7 @@ class Post(models.Model):
     title = models.CharField(max_length=155)
     url = models.URLField(max_length=255)
     description = models.TextField(max_length=255)
-    technologies = models.CharField(max_length=200, blank=True)
+    projects = models.CharField(max_length=200, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     date = models.DateTimeField(auto_now_add=True, blank=True)
     image = models.ImageField( blank=True, null=True, default='default.jpg')
@@ -81,4 +82,16 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_profile(sender, instance, **kwargs):
         instance.profile.save()  
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.image.path)
+        
+        if img.height  > 300 or img.width > 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
+
 

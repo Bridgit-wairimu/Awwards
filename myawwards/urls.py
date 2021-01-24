@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-
+from .views import PostListView
 from django.conf import settings
 from django.conf.urls.static import static
 

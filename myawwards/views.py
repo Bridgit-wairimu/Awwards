@@ -6,14 +6,21 @@ from .forms import CreateUserForm,UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+from .models import Post
 
 # Create your views here.
 
-
 @login_required(login_url='login')
 def index(request):
-    return render(request, 'index.html')
+    context ={
+        'posts': Post.objects.all()
+    }
+    return render(request, 'index.html' , context)
 
+
+class PostListView(ListView):
+    model = Post
 
 @csrf_exempt
 def registerPage(request):
