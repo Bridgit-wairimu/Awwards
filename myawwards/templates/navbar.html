@@ -7,28 +7,46 @@
       <span aria-hidden="true"></span>
     </a>
   </div>
+  <div id="navbarBasicExample" class="navbar-menu">
 
-      <span ><a  style="color: black;"  href="{% url 'logout' %}">logout</a></span>
 
- <div id="navbarBasicExample" class="navbar-menu">
+          <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search' %}" >
+             <input name="search_project" autocomplete="off" id="searching" class="form-control d-none d-md-block" placeholder="Search">
+            <i class="spinner "></i>
+          </form>
+          </a>
 
     <div class="navbar-start">
-      <a class="navbar-item" href="{% url 'profile'%}">
-        <i class="material-icons">face</i>
-        Profile
+      <a class="navbar-item" href="{%url 'index'%}">
+      <i class="material-icons">home</i>
+        Home
       </a>
-
       
-    <div class="navbar-start">
-      <a class="navbar-item" href="{% url 'post-create'%}">
-        Submit Your Project
-      </a>
-         
-         
-      
+            <div id="navbarBasicExample" class="navbar-menu">
 
-        </div>
-      </div>
-    </div>
-  </div>
+                <div class="navbar-start">
+                  <a class="navbar-item" href="{% url 'profile'%}">
+                    <i class="material-icons">face</i>
+                    Profile
+                  </a>
+
+                  
+                <div class="navbar-start">
+                  <a class="navbar-item" href="{% url 'post-create'%}">
+                    Submit Your Project
+                  </a>
+                  
+            </div>
+            </div>
+           
+           
+
+            <div class="navbar-start">
+              <a class="navbar-item" href="{% url 'logout' %}">
+              logout
+              </a>
+                  
+
+            </div>
+                </div>
 </nav>

@@ -41,7 +41,7 @@ class Rating(models.Model):
         return ratings
 
     def __str__(self):
-        return f'{self.post} Rating'
+        return f'{self.design} Rating'
 
 class Post(models.Model):
     title = models.CharField(max_length=155)

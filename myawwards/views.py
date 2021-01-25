@@ -104,7 +104,7 @@ def profile(request):
 
 
 @login_required(login_url='login')
-def score(request, post):
+def projects(request, post):
     post = Post.objects.get(title=post)
     ratings = Rating.objects.filter(user=request.user, post=post).first()
     rating_status = None
@@ -146,4 +146,20 @@ def score(request, post):
         'rating_status': rating_status
 
     }
-    return render(request, 'score.html', params)
+    return render(request, 'projects.html', params)
+
+
+
+def search_project(request):
+    if request.method == 'GET':
+        title = request.GET.get("title")
+        results = Post.objects.filter(title__icontains=title).all()
+        print(results)
+        message = f'name'
+        params = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any image"  
