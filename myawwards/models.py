@@ -7,6 +7,8 @@ from PIL import Image
 
 from django.urls import reverse
 
+from cloudinary.models import CloudinaryField
+
  #Create your models here.
 class Rating(models.Model):
     rating = (
@@ -51,6 +53,8 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True)
     image = models.ImageField(upload_to='media/', blank=True, null=True, default='default.jpg')
     url = models.URLField(max_length=255, blank=True, null= True)
+    image = CloudinaryField('media')
+    
     
     def __str__(self):
         return f'{self.title}'

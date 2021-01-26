@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -41,6 +45,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'crispy_forms',
     'rest_framework',
+    'cloudinary',
+
 ]
 
 MIDDLEWARE = [
@@ -139,3 +145,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
+
+
+cloudinary.config( 
+    cloud_name="dwlokkcg9",
+    api_key="523765484763355",
+    api_secret="GdQUk6wJGbMSAkzyU4JUGQi_b9M"
+)
