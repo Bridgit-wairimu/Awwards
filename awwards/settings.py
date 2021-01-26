@@ -132,3 +132,10 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# settings
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+# other settings
+
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'

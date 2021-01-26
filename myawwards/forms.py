@@ -7,6 +7,7 @@ from .models import Profile,Post,Rating
 
 
 
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User

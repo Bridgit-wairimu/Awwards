@@ -1,16 +1,62 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Submit Project</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Post</button>
+ 
+
+<div class="columns is-mobile">
+  <div class="column is-half is-offset-one-quarter">
+
+    <div class="card">
+    <div class="card-content">
+    <form method="post" enctype="multipart/form-data" action="" role="form">
+      {% csrf_token %}
+    <h3 class="title is-3" style="font-size: large; color: blue; text-align: center;">Submit your project</h3>
+
+          <div class="field">
+              <label class="label is-medium" style="font-size: small; color: black;">Choose your picture</label>
+              <div class="file is-boxed">
+                {{ form.image }}
+              </div>
+          </div>
+
+          <div class="field">
+              <label class="label is-medium" style="font-size: small; color: black;">Title</label>
+              <div class="control">
+                {{ form.title }}
+              </div>
+          </div>
+
+          <div class="field">
+              <label class="label is-medium" style="font-size: small; color: black;">Description</label>
+              <div class="control">
+                {{ form.description }}
+              </div>
+          </div>
+
+          <div class="field">
+              <label class="label is-medium" style="font-size: small; color: black;">Projects</label>
+              <div class="control">
+                {{ form.projects }}
+              </div>
+          </div>
+
+          
+          <div class="field">
+              <label class="label is-medium" style="font-size: small; color: black;">Url</label>
+              <div class="control">
+                {{ form.url }}
+              </div>
+          </div>
+
+    <div class="form-group">
+                <button style="background-color: blue; width: 100px; color: white;"class="btn btn-outline-info" type="submit">Post</button>
             </div>
         </form>
-    </div>
+  </div>
+</div>
+
+  </div>
+</div>
+     
 {% endblock content %}

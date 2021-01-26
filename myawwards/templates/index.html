@@ -1,33 +1,85 @@
 {%extends 'base.html'%}
 {% load static %}
+{% load bootstrap3%}
 {% load crispy_forms_tags %}
 {% block content %}
 
 {{block.super}}
 
+
 <h1 class="text-center" style="color:black; font-size: 30px; font-weight: bold;" >awwards..</h2>
     
-    <div class="  banner text-center">
-    <div class="header">
-     <img src="../static/css/images/photo-one.jpg"  width="1200px" height="150px">
-    </div> 
+   <img src="../static/css/images/photo-one.jpg"  width="1200px" height="150px">
+     
+   
+                                    <div class="box-notesite js-notes">
+                                    <li class="circle-note-progress style-design" data-note="">
+                                        <div class="circle">
+                                            <div class="des">
+                                                <p class="d-block mx-auto textrate">9.09</p>
+                                            </div>
+                                        </div>
+                                        <div class="legend">DESIGN</div>
+                                    </li>
+                                    <li class="circle-note-progress style-usability"
+                                        data-note="{{rating.usability_average}}">
+                                        <div class="circle">
+                                            <div class="des1">
+                                                <p class="d-block mx-auto textrate">7.78</p>
+                                            </div>
+                                        </div>
+                                        <div class="legend">USABILITY</div>
+                                    </li>
+                                    <li class="circle-note-progress style-creativity"
+                                        data-note="{{rating.content_average}}">
+                                        <div class="circle">
+                                            <div class="des2">
+                                                <p class="d-block mx-auto textrate">5.76</p>
+                                            </div>
+                                        </div>
+                                        <div class="legend">CONTENT</div>
+                                    </li>
+                                    <li class="circle-note-progress style-content" data-note="5.65">
+                                        <div class="circle">
+                                            <div class="des3">
+                                                <p class="d-block mx-auto textrate">12.45</p>
+                                            </div>
+                                        </div>
+                                        <div class="legend">SCORE</div>
+                                    </li>
+                                </ul>
 
+                            </div>
+                        </div>
 
-    
-    {% for post in posts %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{post.title|title}}</a>
-              <p>{{ post.description }}</p>
-             <img src="{{post.image.url}}" class="img-responsive" alt="Image" class="card-img" width="200px" height="150px">
+ 
+<div class="container-fluid main">
+    <div class="container-fluid headview"
+   
+    </div>
+    <div class="templates d-flex flex-row">
+        {% for post in posts %}
 
-            <hr>
-            <p class="card-text "><img src="{{post.user.profile.profile_picture.url}}" class="nav-img mr-2" alt="">
+        <div class="col-md-4 mt-4">
+            <div class="card profile-card-5">
+                <div class="card-img-block">
+               <img src="{{post.image.url}}" class="img-responsive" alt="Image" class="card-img" >
+                </div>
+                <div class="card-body pt-0">
+                    <h5 class="card-title">{{post.title|title}}</h5>
+                    <p class="card-text">{{posts.decription}}</p>
+                    <hr>
+                    <a href="{{post.url}}"
+                       class="btn btn-primary">View More</a>
+                       <hr>
+                  <p class="card-text "><img src="{{image.profile.image.url}}" class="nav-img mr-2" alt="">
                 By {{post.user.username|title}} <span style="float:right">{{post.date|date}}</span>
             </p>
-          </div>
-        </article>
-    {% endfor %}
-  
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    
 {%endblock%}

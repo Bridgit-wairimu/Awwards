@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,DetailView,CreateView
-from .models import Post
+from .models import Post,Profile,Rating
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -19,6 +19,15 @@ def index(request):
         'posts': Post.objects.all()
     }
     return render(request, 'index.html' , context)
+
+
+def ratings(request):
+    ratings = Rate.objects.all()
+    rate_params = {
+        'ratings': ratings
+    }
+
+    return render('projects.html', rate_params)
 
 
 # <app>/<model>_<viewtype>.html
@@ -51,6 +60,7 @@ def registerPage(request):
         if request.method == 'POST':
             form =CreateUserForm(request.POST)
             if form.is_valid():
+                form.save()
             
                 messages.success(request,'Account was created successfully')
                 return redirect('login')
@@ -68,9 +78,7 @@ def loginPage(request):
             
             if user is not None:   
                 login(request, user)
-                return redirect('index')
-            else:
-                    messages.info(request, 'username or password is incorrect')   
+               
         context={}
         return render(request,'registration/login.html',  context)
 
@@ -104,14 +112,9 @@ def profile(request):
 
 
 @login_required(login_url='login')
-def projects(request, post):
-    post = Post.objects.get(title=post)
-    ratings = Rating.objects.filter(user=request.user, post=post).first()
-    rating_status = None
-    if ratings is None:
-        rating_status = False
-    else:
-        rating_status = True
+def projects(request, post):   
+    posts = Posts.objects.get(title=post)
+    
     if request.method == 'POST':
         form = RatingsForm(request.POST)
         if form.is_valid():
@@ -119,36 +122,32 @@ def projects(request, post):
             rate.user = request.user
             rate.post = post
             rate.save()
-            post_ratings = Rating.objects.filter(post=post)
+            post_ratings = Rate.objects.filter(post=post)
 
-            design_ratings = [d.design for d in post_ratings]
+            design_ratings = [i.design for i in post_ratings]
             design_average = sum(design_ratings) / len(design_ratings)
 
-            usability_ratings = [us.usability for us in post_ratings]
+            usability_ratings = [i.usability for i in post_ratings]
             usability_average = sum(usability_ratings) / len(usability_ratings)
 
-            content_ratings = [content.content for content in post_ratings]
+            content_ratings = [i.content for i in post_ratings]
             content_average = sum(content_ratings) / len(content_ratings)
 
             score = (design_average + usability_average + content_average) / 3
-            print(score)
             rate.design_average = round(design_average, 2)
             rate.usability_average = round(usability_average, 2)
             rate.content_average = round(content_average, 2)
             rate.score = round(score, 2)
             rate.save()
-            return HttpResponseRedirect(request.path_info)
+
     else:
         form = RatingsForm()
-    params = {
-        'post': post,
-        'rating_form': form,
-        'rating_status': rating_status
+    context = {
+        'posts': posts,
+        'rating_form': form
 
     }
-    return render(request, 'projects.html', params)
-
-
+    return render(request, 'projects.html', context)
 
 def search_project(request):
     if request.method == 'GET':
