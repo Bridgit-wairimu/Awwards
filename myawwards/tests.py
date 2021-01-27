@@ -21,7 +21,7 @@ class TestProfile(TestCase):
 class PostTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(id=1, username='bridgit')
-        self.post = Post.objects.create(id=1, title='test post', photo='default.jpg', description='desc',
+        self.post = Post.objects.create(id=1, title='test post', image='default.jpg', description='desc',
                                         user=self.user, url='https://picturenims.herokuapp.com/')
 
     def test_instance(self):
@@ -42,17 +42,14 @@ class PostTest(TestCase):
         post = Post.search_project('test')
         self.assertTrue(len(post) > 0)
 
-    def test_delete_post(self):
-        self.post.delete_post()
-        post = Post.search_project('test')
-        self.assertTrue(len(post) < 1)
+    
 
 
 class RatingTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(id=1, username='bridgit')
-        self.post = Post.objects.create(id=1, title='test post', photo='default.jpg', description='desc',
-                                        user=self.user, url='http://ur.coml')
+        self.post = Post.objects.create(id=1, title='test post', image='default.jpg', description='desc',
+                                        user=self.user, url='')
         self.rating = Rating.objects.create(id=1, design=6, usability=7, content=9, user=self.user, post=self.post)
 
     def test_instance(self):
