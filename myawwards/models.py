@@ -87,8 +87,9 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
     
     
-    def save_profile(self):
-        self.user
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
