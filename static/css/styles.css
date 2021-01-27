@@ -3,3 +3,15 @@
     background-color:black;
     color:black;
 }
+
+li{
+    text-align: center;
+    justify-content: space-around;
+    display: flex;
+}
+
+body{
+    background-color: #f9f9f9;
+}
+
+

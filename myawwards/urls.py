@@ -14,7 +14,7 @@ urlpatterns=[
     url(r'^post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     url(r'^post/new/', PostCreateView.as_view(), name='post-create'),
     url(r'^search/', views.search_project, name='search'),
-    url(r'^projects/<post>',views.projects, name='projects'),
+    url(r'^projects/<post>',views.projects,name='projects'),
   ]
 
 

@@ -112,8 +112,8 @@ def profile(request):
 
 
 @login_required(login_url='login')
-def projects(request, post):   
-    posts = Posts.objects.get(title=post)
+def projects(request):   
+    posts: Post.objects.get(title=posts)
     
     if request.method == 'POST':
         form = RatingsForm(request.POST)
@@ -122,7 +122,7 @@ def projects(request, post):
             rate.user = request.user
             rate.post = post
             rate.save()
-            post_ratings = Rate.objects.filter(post=post)
+            post_ratings = Rate.objects.filter(title=posts)
 
             design_ratings = [i.design for i in post_ratings]
             design_average = sum(design_ratings) / len(design_ratings)
@@ -143,22 +143,26 @@ def projects(request, post):
     else:
         form = RatingsForm()
     context = {
-        'posts': posts,
+        'posts': Post.objects.all(),
         'rating_form': form
 
     }
     return render(request, 'projects.html', context)
 
 def search_project(request):
-    if request.method == 'GET':
-        title = request.GET.get("title")
-        results = Post.objects.filter(title__icontains=title).all()
-        print(results)
-        message = f'name'
-        params = {
-            'results': results,
-            'message': message
-        }
-        return render(request, 'search.html', params)
+    if 'titles' in request.GET and request.GET['titles']:
+        search_term = request.GET.get("titles")
+        searched_posts = Posts.search_by_posts(search_term)
+        
+        message = f'{search_term}'
     else:
-        message = "You haven't searched for any image"  
+        message = "You haven't searched for any term"
+    
+    return render(request,'search.html')
+    
+    context={
+        "message": message,
+        "posts":searched_posts
+    }    
+        
+    return render(request,'search.html',context)

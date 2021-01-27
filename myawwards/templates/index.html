@@ -5,58 +5,27 @@
 {% block content %}
 
 {{block.super}}
+<body>
 
+<div class="bg">             
+    <div class="box" style="background-image: url('  https://images.unsplash.com/photo-1535868463750-c78d9543614f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1055&q=80'); height: 300px;"> 
+       <div class="flex-container">
+        <p class="logos" id="one" style="padding: 20px; border: 2px solid blue;border-radius:200px;font-weight:bolder;font-size: 20px; width: 200px; color: white; text-align: center; float: left;">DESIGN</p>
+        
+        <p class="logos"  id="two"  style="padding: 20px; border: 2px solid blue;border-radius:200px;font-weight:bolder; font-size: 20px; width:200px; color: white; text-align: center; float: left;">USABILITY</p>
+        
+        <p class="logos" id="three" style="padding: 20px;border: 2px solid blue;border-radius:200px;font-weight:bolder; font-size: 20px; width: 200px; color: white; text-align: center; float: left;">CONTENT</p>
+</div>
+ </div>
+</div>
 
-<h1 class="text-center" style="color:black; font-size: 30px; font-weight: bold;" >awwards..</h2>
-    
-   <img src="../static/css/images/photo-one.jpg"  width="1200px" height="150px">
-     
-   
-                                    <div class="box-notesite js-notes">
-                                    <li class="circle-note-progress style-design" data-note="">
-                                        <div class="circle">
-                                            <div class="des">
-                                                <p class="d-block mx-auto textrate">9.09</p>
-                                            </div>
-                                        </div>
-                                        <div class="legend">DESIGN</div>
-                                    </li>
-                                    <li class="circle-note-progress style-usability"
-                                        data-note="{{rating.usability_average}}">
-                                        <div class="circle">
-                                            <div class="des1">
-                                                <p class="d-block mx-auto textrate">7.78</p>
-                                            </div>
-                                        </div>
-                                        <div class="legend">USABILITY</div>
-                                    </li>
-                                    <li class="circle-note-progress style-creativity"
-                                        data-note="{{rating.content_average}}">
-                                        <div class="circle">
-                                            <div class="des2">
-                                                <p class="d-block mx-auto textrate">5.76</p>
-                                            </div>
-                                        </div>
-                                        <div class="legend">CONTENT</div>
-                                    </li>
-                                    <li class="circle-note-progress style-content" data-note="5.65">
-                                        <div class="circle">
-                                            <div class="des3">
-                                                <p class="d-block mx-auto textrate">12.45</p>
-                                            </div>
-                                        </div>
-                                        <div class="legend">SCORE</div>
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
-
- 
+<hr>
+    <h4 style="text-align: center; font-size: 20px; font-weight: bold; color:black;">Websites available</h4>
+                                    
 <div class="container-fluid main">
     <div class="container-fluid headview"
    
-    </div>
+    
     <div class="templates d-flex flex-row">
         {% for post in posts %}
 
@@ -82,10 +51,25 @@
     </div>
 </div>
     
+<div class="footer">
+ 
+<footer style="background-color:grey;" class="page-footer font-small unique-color-dark pt-4">
+    <div class="container">
+      <ul class="list-unstyled list-inline text-center py-2">
+        <li class="list-inline-item">
+          <h5 style="color: white;" class="mb-1">Awwards <i class="fas fa-trophy"></i>  <br> Innovate,Create and Inspire</h5>
+        </li>
+        
+      </ul>
+    </div>
+   
+    <div style="color: white;" class="footer-copyright text-center py-3">© 2019 Copyright:
+      <a style="color: white;"> Bridgit Kirika</a>
+    </div>
+    
+   </footer>
+ 
 
-
-
-
-
-
+</div>
+</body>
 {%endblock%}
