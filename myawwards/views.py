@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http  import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import csrf_exempt
@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,DetailView,CreateView
 from .models import Post,Profile,Rating
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 
 # Create your views here.
 
@@ -166,3 +165,13 @@ def search_project(request):
     }    
         
     return render(request,'search.html',context)
+
+
+def user_profile(request, username):
+    user_prof = get_object_or_404(User, username=username)
+    if request.user == user_prof:
+        return redirect('profile', username=request.user.username)
+    params = {
+        'user_prof': user_prof,
+    }
+    return render(request, 'userprofile.html', params)  
