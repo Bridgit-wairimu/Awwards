@@ -15,3 +15,9 @@ body{
 }
 
 
+@media only screen and (max-width: 700px){
+    img {
+      width: 80%px;
+      height: 80px;
+    }
+  }
