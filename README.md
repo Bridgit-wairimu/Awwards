@@ -1,25 +1,27 @@
 # Project Name
-### Insta-clone
+### Awwards
 
 # Author 
 ### Bridgit Wairimu Kirika
 
 # Description
-#### This is a clone of instagram which has the same functionalities as the instagram app.
+#### This is a django application that allows users to post their projects for others to rate and review
 
 
 # User story
-#### 1. Sign in to the application to start using.
-#### 2. Upload my pictures to the application.
-#### 3. See my profile with all my pictures.
-#### 4. Follow other users and see their pictures on my timeline.
-#### 5. Like a picture and leave a comment on it.
+#### 1. View posted projects and their details
+#### 2.Post a project to be rated/reviewed
+#### 3.Rate/ review other users' projects
+#### 4.Search for projects 
+#### 5.View projects overall score
+#### 6.View projects overall score
+#### 7. View my profile page
 
 # Set up or Installation
 
 ## git clone
-#### https://github.com/Bridgit-wairimu/insta-clone
-## cd insta-clone
+#### https://github.com/Bridgit-wairimu/Awwards
+## cd Awwards
 
 ## install and activate the environment
 #### ie python -m venv virtual 
@@ -46,7 +48,7 @@
 
 # Live Link
 
-#### https://instanimoh.herokuapp.com/
+#### 
 
 # Contact Details
 
