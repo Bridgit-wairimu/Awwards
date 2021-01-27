@@ -46,6 +46,10 @@
 #### python3.6
 #### Django 1.11
 
+# Known Bugs
+
+#### once you create your account you will be redirected to the login,So after putting your credentials you will have to press the login button twice for you to be logged in.
+
 # Live Link
 
 #### https://briawwards.herokuapp.com/
